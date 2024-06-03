@@ -12,6 +12,13 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="./styles/main.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"
+      integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./index.js" defer></script>
   </head>
   <body>
     <div class="uploader_container">
@@ -21,34 +28,17 @@
       </div>
 
       <div class="uploader_body">
-        <form class="dropzone">
+        <div class="dropzone">
           <i class="fa-solid fa-cloud-arrow-up"></i>
-          <span>Drag and drop files here or click to upload</span>
-
-          <input type="file" name="file" id="file" />
-        </form>
+          <span>Drag and drop files here</span>
+          <input type="file" name="files" id="fileInput" multiple />
+          <span>- OR -</span>
+          <button id="browseFilesBtn">Browse files</button>
+        </div>
         <div class="result">
-          <h4>Uploaded files</h4>
+          <h4 class="result_title">Uploaded files</h4>
 
-          <div class="uploaded_files">
-            <div class="uploaded_file_card">
-              <span class="file_icon"
-                ><i class="fa-solid fa-file-pdf"></i
-              ></span>
-              <div class="file_details_container">
-                <div class="file_details">
-                  <div class="file_info">
-                    <p class="file_name">Filename</p>
-                    <span class="percentage">(50%)</span>
-                  </div>
-                  <p class="file_status">In progress</p>
-                </div>
-                <div class="progress">
-                  <span class="progress_bar"></span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="uploaded_files"></div>
         </div>
       </div>
     </div>

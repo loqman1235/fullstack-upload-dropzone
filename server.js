@@ -29,7 +29,7 @@ app.get("/test", (req, res, next) => {
   console.log("Request made to /test");
 });
 
-app.post("/upload", upload.single("file"), (req, res, next) => {
+app.post("/upload", upload.array("files"), (req, res, next) => {
   // Validate file extension
   //   const fileExt = req.file.filename.split(".")[1];
   //   const allowedExts = ["png", "jpeg", "jpg"];
@@ -40,7 +40,8 @@ app.post("/upload", upload.single("file"), (req, res, next) => {
   //   }
 
   // return files details
-  res.status(200).json(req.file);
+  console.log(req.files);
+  res.status(201).json("files uploaded");
 });
 
 app.listen(3001, () => console.log("Server started on port 3001"));
