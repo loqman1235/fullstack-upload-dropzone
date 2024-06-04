@@ -249,7 +249,7 @@ body {
 .uploaded_file_card .file_details_container .progress .progress_bar {
   position: absolute;
   inset: 0;
-  width: 50%;
+  width: 0%;
   border-radius: 50px;
   background-color: var(--primary-color);
 }
