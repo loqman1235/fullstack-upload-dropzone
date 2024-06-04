@@ -4,6 +4,8 @@ const browseFilesBtn = document.getElementById("browseFilesBtn");
 const uploadedFilesContainer = document.querySelector(".uploaded_files");
 const dropzoneMessage = document.getElementById("dropzoneMessage");
 
+// Event Listeners
+
 dropzone.addEventListener("dragover", (e) => {
   e.preventDefault();
   dropzone.classList.add("dragover");
@@ -31,6 +33,8 @@ fileInput.addEventListener("change", (e) => {
     handleUpload(selectedFiles);
   }
 });
+
+// Functions
 
 async function handleUpload(files) {
   const formData = new FormData();
@@ -88,7 +92,7 @@ function handleUploadedFilesCards(files) {
     uploadedFileCard.classList.add("uploaded_file_card");
     uploadedFileCard.innerHTML = `
     <span class="file_icon"
-      ><i class="fa-solid fa-file-pdf"></i
+      >${handleFileIcon(file.file.type)}</i
     ></span>
     <div class="file_details_container">
       <div class="file_details">
@@ -116,4 +120,29 @@ function handleSelectFilesMessage(files) {
       : `Selected ${files.length} files: ${Array.from(files)
           .map((file) => file.name)
           .join(", ")}`;
+}
+
+function handleFileIcon(fileType) {
+  const audioFileIcon = `<i class="fa-solid fa-file-audio"></i>`;
+  const pdfFileIcon = `<i class="fa-solid fa-file-pdf"></i>`;
+  const videoFileIcon = `<i class="fa-solid fa-file-video"></i>`;
+  const imageFileIcon = `<i class="fa-solid fa-file-image"></i>`;
+  const wordFileIcon = `<i class="fa-solid fa-file-word"></i>`;
+  const defaultFileIcon = `<i class="fa-solid fa-file"></i>`;
+
+  switch (true) {
+    case fileType.startsWith("image/"):
+      return imageFileIcon;
+    case fileType.startsWith("application/pdf"):
+      return pdfFileIcon;
+    case fileType.startsWith("application/msword"):
+      return wordFileIcon;
+    case fileType.startsWith("audio/"):
+      return audioFileIcon;
+    case fileType.startsWith("video/"):
+      return videoFileIcon;
+
+    default:
+      return defaultFileIcon;
+  }
 }
